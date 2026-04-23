@@ -53,17 +53,17 @@ export default function HeroSlider() {
             alt={FEATURED_PRODUCTS[current].title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/10 flex flex-col justify-end p-8 md:p-12">
+          <div className="absolute inset-0 bg-black/10 flex flex-col justify-end p-4 sm:p-6 md:p-8 lg:p-12">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="max-w-md"
+              className="max-w-xs sm:max-w-md"
             >
-              <h2 className="text-white text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">
+              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 drop-shadow-lg line-clamp-2">
                 {FEATURED_PRODUCTS[current].title}
               </h2>
-              <p className="text-white/80 text-sm md:text-base font-medium mb-6 drop-shadow-md">
+              <p className="text-white/80 text-xs sm:text-sm md:text-base font-medium mb-3 sm:mb-6 drop-shadow-md line-clamp-1">
                 {FEATURED_PRODUCTS[current].tagline}
               </p>
             </motion.div>
@@ -71,37 +71,45 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute bottom-8 right-8 flex items-center gap-4 z-20">
-        <div className="flex gap-2">
+      {/* Controls - Repositioned for mobile */}
+      <div className="absolute bottom-3 sm:bottom-4 md:bottom-8 right-3 sm:right-4 md:right-8 flex flex-col sm:flex-row items-end gap-2 sm:gap-3 md:gap-4 z-20">
+        {/* Dots */}
+        <div className="flex gap-1 sm:gap-2">
           {FEATURED_PRODUCTS.map((_, i) => (
             <button
                key={i}
                onClick={() => setCurrent(i)}
-               className={`h-1.5 rounded-full transition-all duration-300 ${current === i ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
+               className={`h-1 sm:h-1.5 rounded-full transition-all duration-300 ${current === i ? 'w-6 sm:w-8 bg-white' : 'w-1.5 sm:w-2 bg-white/40'}`}
+               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
         
-        <div className="flex gap-2 ml-4">
+        {/* Arrow buttons */}
+        <div className="flex gap-1 sm:gap-2">
           <button 
             onClick={prev}
-            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40 transition-colors cursor-pointer"
+            className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40 transition-colors cursor-pointer"
+            aria-label="Previous slide"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 sm:w-5 h-4 sm:h-5" />
           </button>
           <button 
             onClick={next}
-            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40 transition-colors cursor-pointer"
+            className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/40 transition-colors cursor-pointer"
+            aria-label="Next slide"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
           </button>
         </div>
       </div>
 
-      <button className="absolute top-8 right-8 bg-brand-primary text-white py-3 px-6 rounded-full flex items-center gap-4 hover:pr-8 transition-all group/btn shadow-xl z-20">
-        <span className="font-semibold text-sm">Shop Now</span>
-        <div className="w-6 h-6 bg-white text-brand-primary rounded-full flex items-center justify-center transition-transform group-hover/btn:rotate-45">
-          <ArrowRight className="w-3 h-3" />
+      {/* Shop button */}
+      <button className="absolute top-3 sm:top-4 md:top-8 right-3 sm:right-4 md:right-8 bg-brand-primary text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full flex items-center gap-2 sm:gap-4 hover:pr-7 sm:hover:pr-8 transition-all group/btn shadow-lg z-20 text-xs sm:text-sm">
+        <span className="font-semibold hidden sm:inline">Shop Now</span>
+        <span className="font-semibold sm:hidden text-xs">Shop</span>
+        <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white text-brand-primary rounded-full flex items-center justify-center transition-transform group-hover/btn:rotate-45 flex-shrink-0">
+          <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
         </div>
       </button>
     </div>

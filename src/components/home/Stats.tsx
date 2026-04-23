@@ -5,11 +5,11 @@ export default function Stats() {
   ];
 
   return (
-    <section className="px-6 py-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section className="px-4 md:px-6 py-12 md:py-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
       {stats.map((stat, i) => (
-        <div key={i} className="text-center md:text-left space-y-4">
-          <div className="text-5xl font-bold font-heading">{stat.value}</div>
-          <p className="text-sm text-brand-primary/50 leading-relaxed max-w-[240px] mx-auto md:mx-0">
+        <div key={i} className="text-center md:text-left space-y-3 md:space-y-4">
+          <div className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading">{stat.value}</div>
+          <p className="text-xs sm:text-sm text-brand-primary/50 leading-relaxed max-w-xs mx-auto md:mx-0">
             {stat.label}
           </p>
         </div>

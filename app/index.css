@@ -16,11 +16,18 @@
   }
   
   body {
-    @apply bg-brand-bg text-brand-primary font-sans antialiased;
+    @apply bg-brand-bg text-brand-primary font-sans antialiased overflow-x-hidden;
   }
   
   h1, h2, h3, h4 {
     @apply font-heading tracking-tight;
+  }
+
+  /* Mobile-specific base adjustments */
+  @media (max-width: 768px) {
+    html {
+      font-size: 16px;
+    }
   }
 }
 
@@ -34,4 +41,31 @@
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile optimization utilities */
+@media (max-width: 640px) {
+  .container-mobile-safe {
+    overflow-x: hidden;
+  }
+
+  .text-hero-mobile {
+    @apply text-3xl md:text-5xl lg:text-7xl;
+  }
+
+  .gap-mobile {
+    @apply gap-3 md:gap-6 lg:gap-8;
+  }
+
+  .px-mobile {
+    @apply px-4 md:px-6;
+  }
+
+  .py-mobile {
+    @apply py-8 md:py-12 lg:py-20;
+  }
+
+  .p-mobile {
+    @apply p-6 md:p-12 lg:p-20;
+  }
 }
